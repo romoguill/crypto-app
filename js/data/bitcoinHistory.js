@@ -491,3 +491,5 @@ const bitcoinHistory = [
     '0',
   ],
 ];
+
+export default bitcoinHistory;
