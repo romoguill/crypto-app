@@ -14,7 +14,7 @@
     <script type="module" src="js/app.js" defer></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-warning">
       <div class="container-fluid mx-3">
         <a class="navbar-brand" href="#">TO THE MOON</a>
         <button
@@ -50,35 +50,89 @@
     <main>
       <div class="container my-5">
         <form>
-          <input type="text" class="form-control" />
+          <div class="w-25 mx-auto mb-5">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search asset"
+            />
+          </div>
         </form>
 
         <table class="table table-hover table-borderless">
           <thead>
             <tr class="table-dark">
               <th>Name</th>
-              <th>Price</th>
-              <th>Change</th>
-              <th>Market cap</th>
-              <th>Volume</th>
+              <th>
+                <div class="d-flex justify-content-end me-3">
+                  <span>Price</span>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex justify-content-end me-3">
+                  <span>Change</span>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex justify-content-end me-3">
+                  <span>Market cap</span>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex justify-content-end me-3">
+                  <span>Volume</span>
+                </div>
+              </th>
               <th>Chart</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Bitcoin <span>BTC</span></td>
-              <td>USD 23,405.32</td>
-              <td>4.32%</td>
-              <td>239,234</td>
-              <td>493,234,123</td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>USD 23,405.32</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>4.23%</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>USD 1.342T</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>240.492</span>
+                </div>
+              </td>
               <td>chart</td>
             </tr>
             <tr>
               <td>Ethereum <span>ETH</span></td>
-              <td>USD 1,263.34</td>
-              <td>6.72%</td>
-              <td>51,344</td>
-              <td>152,264</td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>USD 1,834.43</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>10.34%</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>USD 405.342</span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-end me-3">
+                  <span>40,239</span>
+                </div>
+              </td>
               <td>chart</td>
             </tr>
           </tbody>
