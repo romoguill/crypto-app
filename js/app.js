@@ -58,3 +58,8 @@ function init() {
 }
 
 // init();
+
+// TESTS
+wallet.addCryptocurrency(bitcoin, 4.32);
+wallet.addCryptocurrency(ethereum, 23.66);
+console.log(bitcoin.getChartLabels(7));

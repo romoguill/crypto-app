@@ -17,6 +17,25 @@ class Cryptocurrency {
       };
     });
   }
+
+  // Devuelve un array de los ultimos n dias (days). Se usara para ChartJS.
+  getDataForChart(days) {
+    const historyFiltered = this.history.slice(this.history.length - days);
+    return {
+      labels: historyFiltered.map((historyItem) => historyItem.date),
+      dataOpenPrice: historyFiltered.map(
+        (historyItem) => historyItem.openPrice
+      ),
+      datahighPrice: historyFiltered.map(
+        (historyItem) => historyItem.highPrice
+      ),
+      dataLowPrice: historyFiltered.map((historyItem) => historyItem.lowPrice),
+      dataClosePrice: historyFiltered.map(
+        (historyItem) => historyItem.closePrice
+      ),
+      dataVolume: historyFiltered.map((historyItem) => historyItem.volume),
+    };
+  }
 }
 
 export default Cryptocurrency;
