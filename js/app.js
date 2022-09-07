@@ -62,4 +62,5 @@ function init() {
 // TESTS
 wallet.addCryptocurrency(bitcoin, 4.32);
 wallet.addCryptocurrency(ethereum, 23.66);
-console.log(bitcoin.getChartLabels(7));
+console.log(bitcoin.getDataForChart(7));
+console.log(wallet.calculateTotalValue());

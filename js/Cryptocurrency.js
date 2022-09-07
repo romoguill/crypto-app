@@ -18,7 +18,7 @@ class Cryptocurrency {
     });
   }
 
-  // Devuelve un array de los ultimos n dias (days). Se usara para ChartJS.
+  // Devuelve un objeto del historico de los ultimos n dias (days). Se usara para ChartJS.
   getDataForChart(days) {
     const historyFiltered = this.history.slice(this.history.length - days);
     return {
