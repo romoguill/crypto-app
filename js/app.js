@@ -64,3 +64,7 @@ wallet.addCryptocurrency(bitcoin, 4.32);
 wallet.addCryptocurrency(ethereum, 23.66);
 console.log(bitcoin.getDataForChart(7));
 console.log(wallet.calculateTotalValue());
+wallet.removeCryptocurrency('BTC');
+console.log(wallet);
+wallet.modifyQuantity('ETH', 30);
+console.log(wallet);

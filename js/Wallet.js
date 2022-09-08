@@ -9,8 +9,16 @@ class Wallet {
 
   removeCryptocurrency(token) {
     this.cryptocurrencies = this.cryptocurrencies.filter(
-      (cryptocurrency) => cryptocurrency.token !== token
+      (walletItem) => walletItem.cryptocurrency.token !== token
     );
+  }
+
+  modifyQuantity(token, newQuantity) {
+    this.cryptocurrencies.forEach((walletItem) => {
+      if (walletItem.cryptocurrency.token === token) {
+        walletItem.quanity = newQuantity;
+      }
+    });
   }
 
   calculateTotalValue() {
