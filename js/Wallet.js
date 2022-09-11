@@ -30,6 +30,12 @@ class Wallet {
     }, 0);
   }
 
+  hasToken(token) {
+    return this.cryptocurrencies.some(
+      (walletItem) => walletItem.cryptocurrency.token === token
+    );
+  }
+
   printAccount() {
     if (this.cryptocurrencies.length === 0) {
       return 'Su billetera se encuentra vacia';
