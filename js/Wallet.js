@@ -16,7 +16,7 @@ class Wallet {
   modifyQuantity(token, newQuantity) {
     this.cryptocurrencies.forEach((walletItem) => {
       if (walletItem.cryptocurrency.token === token) {
-        walletItem.quanity = newQuantity;
+        walletItem.quantity = newQuantity;
       }
     });
   }
@@ -47,7 +47,9 @@ class Wallet {
       })
       .join('\n');
 
-    return 'Resumen de tu saldo:\n' + walletStatus;
+    return `Resumen de tu saldo:\n${walletStatus}\nEl valor total segun el utlimo precio de cierre es: $USD ${this.calculateTotalValue().toFixed(
+      2
+    )}`;
   }
 }
 

@@ -37,10 +37,9 @@ function renderWalletMenu() {
     userInput = prompt(`
       Configuracion de billetera.
       Seleccione una opcion:
-        1. Agregar.
-        2. Modificar.
-        3. Eliminar.
-        4. Volver.
+        1. Agregar/Modificar.
+        2. Eliminar.
+        3. Volver.
     `);
     if (['1', '2', '3', '4'].includes(userInput)) {
       break;
@@ -76,16 +75,36 @@ function renderAddMenu() {
   return [tokenInput, quantityInput];
 }
 
+function renderRemoveMenu() {
+  let tokenInput;
+
+  while (true) {
+    tokenInput = prompt(
+      'Seleccionar token. Por ahora solo aceptamos "BTC" y "ETH".'
+    ).toUpperCase();
+
+    if (tokenInput === 'BTC' || tokenInput === 'ETH') {
+      break;
+    }
+
+    alert('Debe seleccionar una opcion valida. Intente nuevamente.');
+  }
+
+  return tokenInput;
+}
+
 function init() {
   while (true) {
     let mainMenuInput = renderMainMenu();
     switch (mainMenuInput) {
       case '1':
         const walletMenuInput = renderWalletMenu();
+        let tokenInput;
+        let quantityInput;
 
         switch (walletMenuInput) {
           case '1':
-            const [tokenInput, quantityInput] = renderAddMenu();
+            [tokenInput, quantityInput] = renderAddMenu();
 
             if (wallet.hasToken(tokenInput)) {
               wallet.modifyQuantity(tokenInput, quantityInput);
@@ -100,13 +119,13 @@ function init() {
               );
               wallet.addCryptocurrency(cryptocurrency, quantityInput);
             }
-
+            break;
           case '2':
-
+            tokenInput = renderRemoveMenu();
+            wallet.removeCryptocurrency(tokenInput);
+            break;
           case '3':
-
-          case '4':
-            continue;
+            break;
         }
         // const [bitcoinQuantity, ethereumQuantity] = renderWalletMenu();
         // wallet.addCryptocurrency(bitcoin, bitcoinQuantity);
