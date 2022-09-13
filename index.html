@@ -11,7 +11,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <script type="module" src="js/app.js" defer></script>
+    <script type="module" src="js/index.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-warning">
@@ -52,6 +52,7 @@
         <form>
           <div class="w-25 mx-auto mb-5">
             <input
+              id="search-input"
               type="text"
               class="form-control"
               placeholder="Search asset"
@@ -59,7 +60,7 @@
           </div>
         </form>
 
-        <table class="table table-hover table-borderless">
+        <table id="main-table" class="table table-hover table-borderless">
           <thead>
             <tr class="table-dark">
               <th>Name</th>
@@ -87,7 +88,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>Bitcoin <span>BTC</span></td>
               <td>
                 <div class="d-flex justify-content-end me-3">
@@ -134,7 +135,7 @@
                 </div>
               </td>
               <td>chart</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
