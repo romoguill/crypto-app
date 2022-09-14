@@ -50,30 +50,17 @@
     </nav>
 
     <main id="simulator">
-      <section class="container w-25 my-5" id="wallet">
+      <section id="wallet" class="container w-25 my-5">
         <div class="card">
           <img
             src="./images/wallet.png"
-            class="card-img-top"
+            class="card-img-top img-fluid"
             alt="wallet image"
           />
           <div class="card-body">
             <h5 class="card-title text-center">Wallet</h5>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <p>Bitcoin</p>
-                <p>2.342</p>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <p>Ethereum</p>
-                <p>10.21</p>
-              </div>
-            </li>
-          </ul>
+          <ul id="wallet-items-list" class="list-group list-group-flush"></ul>
         </div>
       </section>
     </main>
