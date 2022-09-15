@@ -75,26 +75,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div
-                class="container d-flex justify-content-between align-items-center mb-2"
-              >
-                <span class="h5 mb-0">Bitcoin</span>
-                <input
-                  type="number"
-                  class="text-end form-control w-50"
-                  value="3.43"
-                />
-              </div>
-              <div
-                class="container d-flex justify-content-between align-items-center mb-2"
-              >
-                <span class="h5 mb-0">Ethereum</span>
-                <input
-                  type="number"
-                  class="text-end form-control w-50"
-                  value="45.12"
-                />
-              </div>
+              <form id="edit-wallet-form"></form>
             </div>
             <div class="modal-footer">
               <button
@@ -115,7 +96,7 @@
       <section id="wallet" class="container my-5">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4">
               <div class="card">
                 <img
                   src="./images/wallet.png"
@@ -130,9 +111,10 @@
                         <h5 class="text-center h3">Wallet</h5>
                       </div>
                       <div
-                        class="col me-4 d-flex align-items-center justify-content-end"
+                        class="col me-2 d-flex align-items-center justify-content-end"
                       >
                         <i
+                          id="open-modal-button"
                           class="bi bi-pencil-fill link-danger h5"
                           role="button"
                           data-bs-toggle="modal"
