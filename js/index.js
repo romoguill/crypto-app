@@ -1,3 +1,4 @@
+const tableElement = document.getElementById('main-table');
 const tableBodyElement = document.querySelector('#main-table tbody');
 const searchInputElement = document.getElementById('search-input');
 
@@ -22,8 +23,20 @@ const tableData = [
   },
 ];
 
-function renderMainTable() {
-  const tableDOM = tableData
+function renderMainTable(data) {
+  let noDataElement = document.getElementById('error-fetching-data');
+
+  if (data.length === 0 && !noDataElement) {
+    noDataElement = document.createElement('div');
+    noDataElement.setAttribute('id', 'error-fetching-data');
+    noDataElement.className = 'text-center text-muted h4';
+    noDataElement.textContent = "Sorry we couldn't find any data";
+    tableElement.insertAdjacentElement('afterend', noDataElement);
+  } else if (data.length !== 0) {
+    noDataElement && noDataElement.remove();
+  }
+
+  const tableDOM = data
     .map((tableRow) => {
       return `
       <tr>
@@ -57,4 +70,17 @@ function renderMainTable() {
   tableBodyElement.innerHTML = tableDOM;
 }
 
-renderMainTable();
+function filterData(searchedCrypto) {
+  return tableData.filter(
+    (dailyData) =>
+      dailyData.name.toLowerCase().includes(searchedCrypto.toLowerCase()) ||
+      dailyData.token.toLowerCase().includes(searchedCrypto.toLowerCase())
+  );
+}
+
+searchInputElement.addEventListener('input', function () {
+  const filteredData = filterData(this.value);
+  renderMainTable(filteredData);
+});
+
+renderMainTable(tableData);

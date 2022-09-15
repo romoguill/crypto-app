@@ -50,17 +50,26 @@
     </nav>
 
     <main id="simulator">
-      <section id="wallet" class="container w-25 my-5">
-        <div class="card">
-          <img
-            src="./images/wallet.png"
-            class="card-img-top img-fluid"
-            alt="wallet image"
-          />
-          <div class="card-body">
-            <h5 class="card-title text-center">Wallet</h5>
+      <section id="wallet" class="container my-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="card">
+                <img
+                  src="./images/wallet.png"
+                  class="card-img-top img-fluid"
+                  alt="wallet image"
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-center">Wallet</h5>
+                </div>
+                <ul
+                  id="wallet-items-list"
+                  class="list-group list-group-flush"
+                ></ul>
+              </div>
+            </div>
           </div>
-          <ul id="wallet-items-list" class="list-group list-group-flush"></ul>
         </div>
       </section>
     </main>
