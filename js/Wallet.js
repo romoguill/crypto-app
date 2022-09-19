@@ -7,15 +7,20 @@ class Wallet {
     this.cryptocurrencies.push({ cryptocurrency, quantity });
   }
 
-  removeCryptocurrency(token) {
+  removeCryptocurrency(identifier) {
     this.cryptocurrencies = this.cryptocurrencies.filter(
-      (walletItem) => walletItem.cryptocurrency.token !== token
+      (walletItem) =>
+        walletItem.cryptocurrency.token !== identifier ||
+        walletItem.cryptocurrency.name !== identifier
     );
   }
 
-  modifyQuantity(token, newQuantity) {
+  modifyQuantity(identifier, newQuantity) {
     this.cryptocurrencies.forEach((walletItem) => {
-      if (walletItem.cryptocurrency.token === token) {
+      if (
+        walletItem.cryptocurrency.token === identifier ||
+        walletItem.cryptocurrency.name === identifier
+      ) {
         walletItem.quantity = newQuantity;
       }
     });
@@ -33,6 +38,12 @@ class Wallet {
   hasToken(token) {
     return this.cryptocurrencies.some(
       (walletItem) => walletItem.cryptocurrency.token === token
+    );
+  }
+
+  hasCryptocurrency(name) {
+    return this.cryptocurrencies.some(
+      (walletItem) => walletItem.cryptocurrency.name === name
     );
   }
 

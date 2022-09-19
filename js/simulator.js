@@ -36,6 +36,10 @@ function renderWallet() {
   walletListElement.append(fragment);
 }
 
+function resetWallet() {
+  walletListElement.innerHTML = '';
+}
+
 function renderForm() {
   const fragment = document.createDocumentFragment();
   editWalletFormElement.innerHTML = '';
@@ -47,9 +51,9 @@ function renderForm() {
     walletItemContainerElement.innerHTML = `
         <span class="h5 mb-0">${walletItem.cryptocurrency.name}</span>
         <input
-          class="quantity-input"
+          name="${walletItem.cryptocurrency.name}"
           type="number"
-          class="text-end form-control w-50"
+          class="text-end form-control w-50 quantity-input"
           value=${walletItem.quantity}
         />
       `;
@@ -61,30 +65,34 @@ function renderForm() {
 }
 
 function handleSave() {
-  let hasToRerenderWallet = false;
+  let formData = new FormData(document.getElementById('edit-wallet-form'));
 
-  const cryptocurrenciesInputsElements = editWalletFormElement.querySelectorAll(
-    '.cryptocurrency-input'
-  );
-  const quantityInputsElements =
-    editWalletFormElement.querySelectorAll('quantity-input');
+  for (let [name, quantity] of formData.entries()) {
+    if (wallet.hasCryptocurrency(name)) {
+      wallet.modifyQuantity(name, parseFloat(quantity));
+    } else {
+      // TODO: Pensar la logica sobre si permitir crear una nueva crypto o restringir a una lista determinada
+    }
+  }
+
+  resetWallet();
+  renderWallet();
 }
 
 addItemButtonElement.addEventListener('click', () => {
+  console.warn('TODO: todavia no esta implementadas otras cryptos');
   const walletItemContainerElement = document.createElement('div');
   walletItemContainerElement.className =
     'container d-flex justify-content-between align-items-center mb-2';
   walletItemContainerElement.innerHTML = `
     <input
-      class="cryptocurrency-input"
-      type="number"
-      class="form-control w-50"
+      type="text"
+      class="form-control cryptocurrency-input"
       placeholder="Cryptocurrency"
     />
     <input
-      class="quantity-input"
       type="number"
-      class="form-control w-50"
+      class="form-control quantity-input"
       placeholder="Quantity"
     />
   `;
