@@ -37,6 +37,10 @@ class Cryptocurrency {
       dataVolume: historyFiltered.map((historyItem) => historyItem.volume),
     };
   }
+
+  toJSON() {
+    return JSON.stringify({ token: this.token, name: this.name });
+  }
 }
 
 export default Cryptocurrency;

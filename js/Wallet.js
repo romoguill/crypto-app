@@ -47,6 +47,10 @@ class Wallet {
     );
   }
 
+  toJSON() {
+    const parsedCryptocurrencies
+  }
+
   printAccount() {
     if (this.cryptocurrencies.length === 0) {
       return 'Su billetera se encuentra vacia';

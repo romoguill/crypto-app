@@ -1,13 +1,10 @@
 import Wallet from './Wallet.js';
 import Cryptocurrency from './Cryptocurrency.js';
 
-import bitcoinHistory from './data/bitcoinHistory.js';
-import ethereumHistory from './data/ethereumHistory.js';
-
 const wallet = new Wallet();
 
-const bitcoin = new Cryptocurrency('BTC', 'Bitcoin', bitcoinHistory);
-const ethereum = new Cryptocurrency('ETH', 'Ethereum', ethereumHistory);
+const bitcoin = new Cryptocurrency('BTC', 'Bitcoin');
+const ethereum = new Cryptocurrency('ETH', 'Ethereum');
 
 const walletListElement = document.getElementById('wallet-items-list');
 const walletFormModalElement = document.getElementById('walletFormModal');
@@ -108,3 +105,4 @@ saveFormButtonElement.addEventListener('click', handleSave);
 
 renderWallet();
 renderForm();
+console.log(bitcoin.toJSON());
