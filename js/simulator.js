@@ -79,6 +79,10 @@ function handleSave() {
   renderWallet();
 }
 
+function handleDelete() {
+  // TODO
+}
+
 addItemButtonElement.addEventListener('click', () => {
   console.warn('TODO: todavia no esta implementadas otras cryptos');
   const walletItemContainerElement = document.createElement('div');

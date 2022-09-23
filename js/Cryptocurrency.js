@@ -1,12 +1,12 @@
 class Cryptocurrency {
-  constructor(token, name, historyArray) {
+  constructor(token, name) {
     this.token = token;
     this.name = name;
-    this.history = this.fetchHistory(historyArray);
+    this.history = [];
   }
 
   fetchHistory(historyArray) {
-    return historyArray.map((infoDay) => {
+    this.history = historyArray.map((infoDay) => {
       return {
         date: new Date(infoDay[0]),
         openPrice: parseFloat(infoDay[1]),
@@ -16,6 +16,7 @@ class Cryptocurrency {
         volume: parseFloat(infoDay[5]),
       };
     });
+    return this.history;
   }
 
   // Devuelve un objeto del historico de los ultimos n dias (days). Se usara para ChartJS.
