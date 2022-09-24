@@ -106,4 +106,4 @@ saveFormButtonElement.addEventListener('click', handleSave);
 renderWallet();
 renderForm();
 console.log(JSON.stringify(bitcoin));
-console.log(wallet.toJSON());
+console.log(JSON.stringify(wallet));

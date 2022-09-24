@@ -48,7 +48,7 @@ class Wallet {
   }
 
   toJSON() {
-    return JSON.stringify(this.cryptocurrencies);
+    return this.cryptocurrencies;
   }
 
   printAccount() {
