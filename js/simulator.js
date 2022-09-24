@@ -105,4 +105,5 @@ saveFormButtonElement.addEventListener('click', handleSave);
 
 renderWallet();
 renderForm();
-console.log(bitcoin.toJSON());
+console.log(JSON.stringify(bitcoin));
+console.log(wallet.toJSON());

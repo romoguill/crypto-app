@@ -39,7 +39,7 @@ class Cryptocurrency {
   }
 
   toJSON() {
-    return JSON.stringify({ token: this.token, name: this.name });
+    return { token: this.token, name: this.name };
   }
 }
 

@@ -48,7 +48,7 @@ class Wallet {
   }
 
   toJSON() {
-    const parsedCryptocurrencies
+    return JSON.stringify(this.cryptocurrencies);
   }
 
   printAccount() {
