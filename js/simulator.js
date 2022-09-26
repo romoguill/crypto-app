@@ -41,16 +41,24 @@ function renderForm() {
 
   wallet.cryptocurrencies.forEach((walletItem) => {
     const walletItemContainerElement = document.createElement('div');
-    walletItemContainerElement.className =
-      'container d-flex justify-content-between align-items-center mb-2';
+    walletItemContainerElement.className = 'container mb-2';
     walletItemContainerElement.innerHTML = `
-        <span class="h5 mb-0">${walletItem.cryptocurrency.name}</span>
-        <input
-          name="${walletItem.cryptocurrency.name}"
-          type="number"
-          class="text-end form-control w-50 quantity-input"
-          value=${walletItem.quantity}
-        />
+      <div class="row align-items-center">
+        <div class="col-6">
+          <span class="h5 mb-0">${walletItem.cryptocurrency.name}</span>
+        </div>
+        <div class="col-5">
+          <input
+            name="${walletItem.cryptocurrency.name}"
+            type="number"
+            class="text-end form-control quantity-input"
+            value=${walletItem.quantity}
+          />
+        </div>
+        <div class="col-1">
+          <i class="bi bi-x text-danger" role="button"></i>
+        </div>
+      </div>
       `;
 
     fragment.appendChild(walletItemContainerElement);
