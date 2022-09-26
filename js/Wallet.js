@@ -1,3 +1,5 @@
+import Cryptocurrency from './Cryptocurrency.js';
+
 class Wallet {
   constructor() {
     this.cryptocurrencies = [];
@@ -49,6 +51,20 @@ class Wallet {
 
   toJSON() {
     return this.cryptocurrencies;
+  }
+
+  static fromJSON(storage) {
+    const parsedWallet = JSON.parse(storage);
+    const wallet = new Wallet();
+
+    parsedWallet.forEach((parsedItem) => {
+      const cryptocurrency = new Cryptocurrency(
+        parsedItem.cryptocurrency.token,
+        parsedItem.cryptocurrency.name
+      );
+      wallet.addCryptocurrency(cryptocurrency, parsedItem.quantity);
+    });
+    return wallet;
   }
 
   printAccount() {

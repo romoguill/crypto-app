@@ -1,15 +1,13 @@
 import Wallet from './Wallet.js';
 import Cryptocurrency from './Cryptocurrency.js';
 
-const wallet = new Wallet();
+let wallet = new Wallet();
 
 const bitcoin = new Cryptocurrency('BTC', 'Bitcoin');
 const ethereum = new Cryptocurrency('ETH', 'Ethereum');
 
 const walletListElement = document.getElementById('wallet-items-list');
-const walletFormModalElement = document.getElementById('walletFormModal');
 const editWalletFormElement = document.getElementById('edit-wallet-form');
-const openModalButtonElement = document.getElementById('open-modal-button');
 const addItemButtonElement = document.getElementById('add-item');
 const saveFormButtonElement = document.getElementById('save-form');
 
@@ -72,6 +70,8 @@ function handleSave() {
     }
   }
 
+  localStorage.setItem('wallet', JSON.stringify(wallet));
+
   resetWallet();
   renderWallet();
 }
@@ -105,5 +105,8 @@ saveFormButtonElement.addEventListener('click', handleSave);
 
 renderWallet();
 renderForm();
-console.log(JSON.stringify(bitcoin));
-console.log(JSON.stringify(wallet));
+
+const walletStr = localStorage.getItem('wallet');
+console.log(walletStr);
+wallet = Wallet.fromJSON(walletStr);
+console.log(wallet);
