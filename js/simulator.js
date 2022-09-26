@@ -42,6 +42,10 @@ function renderForm() {
   wallet.cryptocurrencies.forEach((walletItem) => {
     const walletItemContainerElement = document.createElement('div');
     walletItemContainerElement.className = 'container mb-2';
+    walletItemContainerElement.setAttribute(
+      'data-cryptocurrency',
+      walletItem.cryptocurrency.name
+    );
     walletItemContainerElement.innerHTML = `
       <div class="row align-items-center">
         <div class="col-6">
@@ -56,7 +60,7 @@ function renderForm() {
           />
         </div>
         <div class="col-1">
-          <i class="bi bi-x text-danger" role="button"></i>
+          <i class="bi bi-x text-danger btn-delete-item" role="button"></i>
         </div>
       </div>
       `;
@@ -114,7 +118,17 @@ saveFormButtonElement.addEventListener('click', handleSave);
 renderWallet();
 renderForm();
 
-const walletStr = localStorage.getItem('wallet');
-console.log(walletStr);
-wallet = Wallet.fromJSON(walletStr);
-console.log(wallet);
+// const walletStr = localStorage.getItem('wallet');
+// console.log(walletStr);
+// wallet = Wallet.fromJSON(walletStr);
+// console.log(wallet);
+
+editWalletFormElement.addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn-delete-item')) {
+    const walletItemElement = e.target.closest('[data-cryptocurrency]');
+    const cryptocurrency = walletItemElement.dataset.cryptocurrency;
+    wallet.removeCryptocurrency(cryptocurrency);
+    console.log(wallet);
+    renderForm();
+  }
+});

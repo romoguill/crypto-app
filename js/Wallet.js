@@ -12,7 +12,7 @@ class Wallet {
   removeCryptocurrency(identifier) {
     this.cryptocurrencies = this.cryptocurrencies.filter(
       (walletItem) =>
-        walletItem.cryptocurrency.token !== identifier ||
+        walletItem.cryptocurrency.token !== identifier &&
         walletItem.cryptocurrency.name !== identifier
     );
   }
