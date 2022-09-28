@@ -1,21 +1,17 @@
 import Wallet from './Wallet.js';
-import Cryptocurrency from './Cryptocurrency.js';
+import availableCryptocurrencies from './data/availableCryptocurrencies.js';
 
 let wallet = new Wallet();
 
-const bitcoin = new Cryptocurrency('BTC', 'Bitcoin');
-const ethereum = new Cryptocurrency('ETH', 'Ethereum');
-const binance = new Cryptocurrency('BNB', 'Binance');
-const xrp = new Cryptocurrency('XRP', 'XRP');
+if (localStorage.getItem('wallet')) {
+  wallet = Wallet.fromJSON(localStorage.getItem('wallet'));
+}
 
 const walletListElement = document.getElementById('wallet-items-list');
 const editWalletFormElement = document.getElementById('edit-wallet-form');
 const addItemButtonElement = document.getElementById('add-item');
 const saveFormButtonElement = document.getElementById('save-form');
 const openFormButtonElement = document.getElementById('open-modal-button');
-
-wallet.addCryptocurrency(bitcoin, 3.43);
-wallet.addCryptocurrency(ethereum, 45.12);
 
 function renderWallet() {
   let fragment = document.createDocumentFragment();
@@ -87,7 +83,14 @@ function handleSave() {
     if (wallet.hasCryptocurrency(name)) {
       wallet.modifyQuantity(name, parseFloat(quantity));
     } else {
-      // TODO: Pensar la logica sobre si permitir crear una nueva crypto o restringir a una lista determinada
+      const cryptocurrency = availableCryptocurrencies.find(
+        (el) => el.name === name
+      );
+      if (cryptocurrency) {
+        wallet.addCryptocurrency(cryptocurrency, quantity);
+      } else {
+        alert(`${name} is not a valid Cryptocurrency`);
+      }
     }
   }
 
@@ -97,20 +100,11 @@ function handleSave() {
   renderWallet();
 }
 
-function handleDelete(e) {
-  if (e.target.classList.contains('btn-delete-item')) {
-    const walletItemElement = e.target.closest('[data-cryptocurrency]');
-    walletItemElement.remove();
-  }
-}
-
 function handleAddItem() {
+  // Create DOM node for the container that will host 2 inputs
   const walletItemContainerElement = document.createElement('div');
   walletItemContainerElement.className = 'container mb-2';
-  // walletItemContainerElement.setAttribute(
-  //   'data-cryptocurrency',
-  //   walletItem.cryptocurrency.name
-  // );
+
   walletItemContainerElement.innerHTML = `
       <div class="row align-items-center">
         <div class="col-6">
@@ -134,6 +128,25 @@ function handleAddItem() {
       `;
 
   editWalletFormElement.appendChild(walletItemContainerElement);
+
+  // Dynamically set the name input so that the FormData object can read them
+  const inputNameElement = walletItemContainerElement.querySelector(
+    'input[placeholder="Cryptocurrency"]'
+  );
+  const inputQuantityElement = walletItemContainerElement.querySelector(
+    'input[placeholder="Quantity"]'
+  );
+
+  inputNameElement.addEventListener('input', function () {
+    inputQuantityElement.setAttribute('name', this.value);
+  });
+}
+
+function handleDelete(e) {
+  if (e.target.classList.contains('btn-delete-item')) {
+    const walletItemElement = e.target.closest('[data-cryptocurrency]');
+    walletItemElement.remove();
+  }
 }
 
 openFormButtonElement.addEventListener('click', renderForm);
