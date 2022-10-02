@@ -1,11 +1,9 @@
 import Wallet from './Wallet.js';
 import availableCryptocurrencies from './data/availableCryptocurrencies.js';
 
-let wallet = new Wallet();
-
-if (localStorage.getItem('wallet')) {
-  wallet = Wallet.fromJSON(localStorage.getItem('wallet'));
-}
+const wallet = localStorage.getItem('wallet')
+  ? Wallet.fromJSON(localStorage.getItem('wallet'))
+  : new Wallet();
 
 const walletListElement = document.getElementById('wallet-items-list');
 const editWalletFormElement = document.getElementById('edit-wallet-form');
@@ -98,6 +96,23 @@ function handleSave() {
 
   resetWallet();
   renderWallet();
+
+  Toastify({
+    text: 'The wallet has been updated',
+    duration: 2000,
+    close: true,
+    gravity: 'top',
+    position: 'right',
+    stopOnFocus: true,
+    offset: {
+      y: '4em',
+    },
+    style: {
+      background:
+        'linear-gradient(90deg, rgba(33,28,28,1) 0%, rgba(88,72,67,1) 100%)',
+      borderRadius: '4px',
+    },
+  }).showToast();
 }
 
 function handleAddItem() {
