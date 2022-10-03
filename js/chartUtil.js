@@ -1,13 +1,18 @@
-const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
+import Cryptocurrency from './Cryptocurrency.js';
+import bitcoinHistory from './data/bitcoinHistory.js';
+
+const bitcoin = new Cryptocurrency('BTC', 'Bitcoin');
+
+bitcoin.fetchHistory(bitcoinHistory);
 
 const data = {
-  labels: labels,
+  labels: bitcoin.getDataForChart().labels,
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Bitcoin',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: bitcoin.getDataForChart().dataClosePrice,
     },
   ],
 };
