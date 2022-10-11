@@ -1,6 +1,8 @@
 import Wallet from './Wallet.js';
 import availableCryptocurrencies from './data/availableCryptocurrencies.js';
 
+const API_AVG_PRICE_URL = 'https://api.binance.com/api/v3/avgPrice';
+
 const wallet = localStorage.getItem('wallet')
   ? Wallet.fromJSON(localStorage.getItem('wallet'))
   : new Wallet();
@@ -174,3 +176,16 @@ editWalletFormElement.addEventListener('click', handleDelete);
 
 renderWallet();
 renderForm();
+
+function getAvgPrices(tokens) {
+  return Promise.all(
+    tokens.map(async (token) => {
+      const response = await fetch(`${API_AVG_PRICE_URL}?symbol=${token}USDT`);
+      return response.json();
+    })
+  );
+}
+
+const tokens = wallet.getAllTokens();
+console.log(tokens);
+getAvgPrices(tokens).then((data) => console.log(data));

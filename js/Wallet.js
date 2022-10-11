@@ -49,6 +49,12 @@ class Wallet {
     );
   }
 
+  getAllTokens() {
+    return this.cryptocurrencies.map(
+      (walletItem) => walletItem.cryptocurrency.token
+    );
+  }
+
   toJSON() {
     return this.cryptocurrencies;
   }
