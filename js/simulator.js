@@ -34,10 +34,13 @@ async function renderWallet() {
     liElement.classList.add('list-group-item');
     liElement.innerHTML = `
         <div class="d-flex justify-content-between align-items-center my-2">
-          <span>${walletItem.cryptocurrency.name}</span>
+          <span class="h6">${walletItem.cryptocurrency.name}</span>
           <div class="d-flex flex-column align-items-center">
-            <span>${walletItem.quantity}</span>
-            <span>$${(avgPrices[i] * walletItem.quantity).toFixed(2)}</span>
+            <span class="h6">${walletItem.quantity}</span>
+            <span>$${(avgPrices[i] * walletItem.quantity).toLocaleString(
+              'en-US',
+              { maximumFractionDigits: 2, minimumFractionDigits: 2 }
+            )}</span>
             
           </div>
           
