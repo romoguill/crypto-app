@@ -13,16 +13,34 @@ const addItemButtonElement = document.getElementById('add-item');
 const saveFormButtonElement = document.getElementById('save-form');
 const openFormButtonElement = document.getElementById('open-modal-button');
 
-function renderWallet() {
+function getAvgPrices(tokens) {
+  return Promise.all(
+    tokens.map(async (token) => {
+      const response = await fetch(`${API_AVG_PRICE_URL}?symbol=${token}USDT`);
+      const data = await response.json();
+      return Math.round(data.price * 100) / 100;
+    })
+  );
+}
+
+async function renderWallet() {
+  const walletTokens = wallet.getAllTokens();
+  const avgPrices = await getAvgPrices(walletTokens);
+
   let fragment = document.createDocumentFragment();
 
-  wallet.cryptocurrencies.forEach((walletItem) => {
+  wallet.cryptocurrencies.forEach((walletItem, i) => {
     const liElement = document.createElement('li');
     liElement.classList.add('list-group-item');
     liElement.innerHTML = `
         <div class="d-flex justify-content-between align-items-center my-2">
           <span>${walletItem.cryptocurrency.name}</span>
-          <span>${walletItem.quantity}</span>
+          <div class="d-flex flex-column align-items-center">
+            <span>${walletItem.quantity}</span>
+            <span>$${(avgPrices[i] * walletItem.quantity).toFixed(2)}</span>
+            
+          </div>
+          
         </div>
     `;
     fragment.appendChild(liElement);
@@ -176,16 +194,3 @@ editWalletFormElement.addEventListener('click', handleDelete);
 
 renderWallet();
 renderForm();
-
-function getAvgPrices(tokens) {
-  return Promise.all(
-    tokens.map(async (token) => {
-      const response = await fetch(`${API_AVG_PRICE_URL}?symbol=${token}USDT`);
-      return response.json();
-    })
-  );
-}
-
-const tokens = wallet.getAllTokens();
-console.log(tokens);
-getAvgPrices(tokens).then((data) => console.log(data));
