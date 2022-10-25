@@ -9,7 +9,7 @@ const data = {
   labels: bitcoin.getDataForChart().labels,
   datasets: [
     {
-      label: 'Bitcoin',
+      label: 'Wallet',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
       data: bitcoin.getDataForChart().dataClosePrice,
